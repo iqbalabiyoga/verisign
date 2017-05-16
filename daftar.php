@@ -9,9 +9,10 @@
     <br>
     <br>
     <?php if(isset($_POST['submit'])){
-    $email=$_POST['username'];
-    $password=$_POST['password'];
-    $new_key_pair = openssl_pkey_new(array(
+    $email=anti_injection($_POST['username']);
+    $password=md5(anti_injection($_POST['password']));
+
+$new_key_pair = openssl_pkey_new(array(
     "private_key_bits" => 2048,
     "private_key_type" => OPENSSL_KEYTYPE_RSA,
 ));
@@ -19,8 +20,7 @@ openssl_pkey_export($new_key_pair, $private_key_pem);
 
 $details = openssl_pkey_get_details($new_key_pair);
 $public_key_pem = $details['key'];
-//create signature
-openssl_sign($data, $signature, $private_key_pem, OPENSSL_ALGO_SHA256);
+
 
 //save for later
     $pubpath='keys/'.$email.'-pub.pem';
@@ -28,7 +28,9 @@ openssl_sign($data, $signature, $private_key_pem, OPENSSL_ALGO_SHA256);
 file_put_contents($privpath, $private_key_pem);
 file_put_contents($pubpath, $public_key_pem);
     
-    mysqli_query($con,"INSERT INTO 'pengguna'('email', 'password', 'pubkey', 'privkey') VALUES ('$email','$password','$pubpath','$privpath')");}
+    mysqli_query($con,"INSERT INTO pengguna(email, password, pubkey, privkey) VALUES ('$email','$password','$pubpath','$privpath')");
+header('Location:login.php');
+}
     ?>
         <div class="container">
             <div class="row">
@@ -53,7 +55,7 @@ file_put_contents($pubpath, $public_key_pem);
                         <div class="row center">
                             <button class="btn cyan waves-effect waves-light btn-large" type="submit" name="submit"><strong>Masuk</strong> </button>
                         </div>
-                        <div class="row center-align">Sudah punya akun? <a class="grey-text" href="daftar">Masuk</a> </div>
+                        <div class="row center-align">Sudah punya akun? <a class="grey-text" href="login.php">Masuk</a> </div>
                     </form>
                 </div>
             </div>
