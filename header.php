@@ -21,7 +21,7 @@
         });
     </script>
     <nav class="cyan">
-        <div class="nav-wrapper container"> <a href="#" class="brand-logo">VeriSigner</a> </div>
+        <div class="nav-wrapper container"> <a href="index.php" class="brand-logo">VeriSigner</a> </div>
         <?php if(isset($_SESSION['user'])){?>
             <ul class="right">
                 <li><a href="logout.php" class="waves-effect waves-light btn red">Logout</a></li>

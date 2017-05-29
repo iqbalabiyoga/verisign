@@ -20,6 +20,7 @@ if(isset($_POST['submit'])){
         session_start();
         $_SESSION['user']=$data['email'];
         $_SESSION['privkey']=$data['privkey'];
+        $_SESSION['pubkey']=$data['pubkey'];
         header('Location:index.php');
     }
 }
@@ -47,7 +48,8 @@ if(isset($_POST['submit'])){
                         <div class="row center">
                             <button class="btn cyan waves-effect waves-light btn-large" type="submit" name="submit"><strong>Masuk</strong> </button>
                         </div>
-                        <div class="row center-align">Sudah punya akun? <a class="grey-text" href="login.php">Masuk</a> </div>
+                        <div class="row center-align">Belum punya akun? <a class="grey-text" href="daftar.php">Daftar</a> </div>
+                         <div class="row center-align">Verifikasi Dokumen? <a class="grey-text" href="daftar.php">Klik di Sini</a> </div>
                     </form>
                 </div>
             </div>
