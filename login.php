@@ -49,7 +49,7 @@ if(isset($_POST['submit'])){
                             <button class="btn cyan waves-effect waves-light btn-large" type="submit" name="submit"><strong>Masuk</strong> </button>
                         </div>
                         <div class="row center-align">Belum punya akun? <a class="grey-text" href="daftar.php">Daftar</a> </div>
-                         <div class="row center-align">Verifikasi Dokumen? <a class="grey-text" href="daftar.php">Klik di Sini</a> </div>
+                         <div class="row center-align">Verifikasi Dokumen? <a class="grey-text" href="verifikasi.php">Klik di Sini</a> </div>
                     </form>
                 </div>
             </div>

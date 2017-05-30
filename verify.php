@@ -21,14 +21,16 @@ var_dump($r);*/
                 $fileCount = count($myFile);
 
                 for ($i = 0; $i < $fileCount; $i++) {
-                    $ext = pathinfo($myFile, PATHINFO_EXTENSION);
-                    if($ext = 'dat'){
-                        $signature = $myFile;
-                    }elseif($ext = 'pem'){
-                        $public_key_pem = $myFile;
-                    }else $data = md5_file($myFile);
+                    $ext = pathinfo($myFile[$i],PATHINFO_EXTENSION);
+                    if($ext == 'dat'){
+                        $signature = file_get_contents($myFile[$i]);
+                    }elseif($ext == 'pem'){
+                        $public_key_pem = file_get_contents($myFile[$i]);
+                    }else $data = md5_file($myFile[$i]);
                 }
             $r = openssl_verify($data, $signature, $public_key_pem, "sha256WithRSAEncryption");
-var_dump($r);
+            if($r == 1){
+                echo "berhasil";
+            }
             }
         ?>

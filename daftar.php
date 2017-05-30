@@ -55,7 +55,7 @@ header('Location:login.php');
                         <div class="row center">
                             <button class="btn cyan waves-effect waves-light btn-large" type="submit" name="submit"><strong>Masuk</strong> </button>
                         </div>
-                        <div class="row center-align">Sudah punya akun? <a class="grey-text" href="login.php">Daftar</a> </div>
+                        <div class="row center-align">Sudah punya akun? <a class="grey-text" href="login.php">Login</a> </div>
                     </form>
                 </div>
             </div>
