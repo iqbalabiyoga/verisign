@@ -12,20 +12,20 @@ if ($uploadOk == 0) {
     move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
     $data=md5_file($target_file);
     $private_key_pem=file_get_contents($_SESSION['privkey']);
-    $pubkey="'/".$_SESSION['pubkey']."'";
+    $pubkey=$_SESSION['pubkey'];
     //create signature
 openssl_sign($data, $signature, $private_key_pem, OPENSSL_ALGO_SHA256);
-    $path='sign/'.$_SESSION['user'].$filename.'.dat';
+    $path='sign/'.$_SESSION['user'].$filename.'-sign.dat';
     file_put_contents($path, $signature);
-    $dokumen="'/"."uploads/".$filename."'";
-    $tandatangan="'/".$path."'";
+    $dokumen="uploads/".$filename;
+    $tandatangan=$path;
     $files = array($dokumen,$tandatangan,$pubkey);
 //print_r($files);
-$zipname = "hasil.zip";
+$zipname = "hasil-".$_SESSION['user']."-".md5($data).".zip";
 $zip = new ZipArchive;
 $zip->open($zipname, ZipArchive::CREATE);
 foreach ($files as $file) {
-  $zip->addFile($file);
+  $zip->addFile($file, basename($file));
 }
 $zip->close();
     
