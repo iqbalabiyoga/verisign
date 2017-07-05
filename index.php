@@ -1,5 +1,6 @@
 
 <html>
+
 <?php
     session_start();
  if(!isset($_SESSION['user'])){
@@ -7,6 +8,7 @@
     }
 include 'header.php';    
 ?>
+    <head><title>VeriSigner | Sign and Verify Your Document</title></head>
 
     <br>
     <br>

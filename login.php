@@ -8,6 +8,8 @@ include 'header.php';
 include 'connect.php';
 include 'anti-inject.php';
 ?>
+<head><title>VeriSigner | Sign and Verify Your Document</title></head>
+
     <br>
     <br>
     <br>
